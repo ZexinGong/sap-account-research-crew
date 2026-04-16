@@ -1,7 +1,10 @@
 from crewai.tools import BaseTool
+from crewai_tools import SerperDevTool
 from typing import Type
 from pydantic import BaseModel, Field
 
+
+search_tool = SerperDevTool()
 
 class MyCustomToolInput(BaseModel):
     """Input schema for MyCustomTool."""

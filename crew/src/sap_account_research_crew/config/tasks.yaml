@@ -1,17 +1,83 @@
 research_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Conduct thorough web research on {company} using the search tool.
+    YOU MUST USE THE SEARCH TOOL - it is critical that you call the search function
+    to gather current, factual data rather than relying on your training data.
+    You must cover:
+
+    1. Company overview: industry, size, revenue (latest available), HQ location
+    2. Recent news: major announcements, acquisitions, partnerships, or leadership changes (last 6 months)
+    3. Strategic priorities: any publicly stated transformation goals, investor day themes, or CEO messaging
+    4. Technology signals: known ERP/cloud/data platforms in use or under evaluation
+    5. Key decision-makers: CFO, CIO, CHRO, and any known digital/IT leadership
+    6. Financial health signals: growth trajectory, cost pressures, investment areas
+
+    Format your output as structured sections with headers.
+    Include the source URL for any specific claim.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
+    A structured intelligence report with clearly labeled sections covering 
+    company overview, recent news, strategic priorities, technology landscape, 
+    key stakeholders, and financial signals. Each factual claim includes a source.
   agent: researcher
 
 reporting_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    You have received a research report on {company}.
+    Analyze it through the lens of an SAP sales engagement.
+
+    Produce a structured analysis covering:
+
+    1. Primary business challenges that map to SAP solutions
+        (be specific: e.g., "fragmented ERP → S/4HANA consolidation opportunity")
+    2. SAP portfolio fit: which SAP products/solutions are most relevant and why
+    3. Strategic entry points: what conversation topics would resonate with their leadership
+    4. Competitive landscape: what other vendors are likely in play (Oracle, Salesforce, etc.)
+    5. Risks and objections: budget constraints, existing vendor lock-in, recent negative news
+    6. Recommended discovery questions: 3–5 questions the AE should ask in the meeting
+
+    Be honest. If the SAP fit is weak in some areas, say so.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
+    A structured SAP-lens analysis covering: business challenge-to-solution mapping, 
+    portfolio fit assessment, entry point recommendations, competitive context, 
+    risk flags, and 3–5 specific discovery questions for the AE.
   agent: reporting_analyst
+
+briefing_task:
+  description: >
+    You have received research intelligence and an SAP analysis for {company}.
+    Write a pre-meeting briefing document for the SAP Account Executive.
+
+    The briefing must follow this exact structure:
+
+    ---
+    # Customer Briefing: {company}
+    *Prepared for SAP Account Executive — [Today's Date]*
+
+    ## Company Snapshot
+    [3–4 sentences: who they are, size, industry, current moment]
+
+    ## What's Happening Right Now
+    [2–3 most relevant recent developments — focus on what creates urgency or opportunity]
+
+    ## Strategic Priorities & SAP Relevance
+    [3–5 bullet points mapping their priorities to SAP value]
+
+    ## Recommended Talking Points
+    [3–4 specific, confident talking points the AE can open with]
+
+    ## Questions to Ask
+    [The 3 best discovery questions from the analysis]
+
+    ## Watch Out For
+    [1–3 risks, sensitivities, or objections to anticipate]
+
+    ## Key Contacts
+    [Relevant executives with titles]
+    ---
+
+    Tone: Professional, confident, direct. No filler. No vague statements.
+    Maximum length: fits on one printed page (roughly 400–500 words).  
+  expected_output: >
+    A complete, formatted pre-meeting briefing document following the specified structure, 
+    ready for an Account Executive to read in under 5 minutes.
+  agent: briefing_specialist
