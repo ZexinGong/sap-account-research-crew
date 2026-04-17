@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
 
-DEFAULT_QUERY = "Research Nvidia as an SAP account"
+DEFAULT_QUERY = "Prepare a customer briefing for Nvidia"
 
 
 def _build_inputs(query: str) -> dict[str, str]:

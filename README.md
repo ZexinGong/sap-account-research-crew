@@ -10,10 +10,10 @@ customer briefings for SAP Account Executives.
 2. Copy `.env.example` to `.env` and add your API keys
    - Groq API key: groq.com (free tier available)
    - Serper API key: serper.dev (free tier available)
-   - Model: Any models accessible through your Groq API. Testing is conducted using `groq/llama-3.3-70b-versatile`
-3. Run the crew with a natural-language query, either by typing it when prompted or by setting `SAP_ACCOUNT_QUERY` before launch.
-4. `crewai install` to install all dependencies.
-5. `crewai run` to conduct research and generate the briefing. The final briefing is written to `output/customer_briefing.md`.
+   - Model: Any models accessible via your Groq API. Testing is conducted using `groq/llama-3.3-70b-versatile`.
+3. `crewai install` to install all dependencies.
+4. `crewai run` to conduct research and generate the briefing. You will be prompted to enter a natural-language query. If nothing is entered, it's defaulted to "Prepare a customer briefing for Nvidia".
+5. The final and intermediated results are visible in the terminal window. Additionally, the final briefing is also written to `output/customer_briefing.md`.
 
 ## Example
 
