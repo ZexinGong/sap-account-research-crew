@@ -1,8 +1,10 @@
 research_task:
   description: >
-    Conduct thorough web research on {company} using the search tool.
+    Conduct thorough web research on the account described by {query} using the search tool.
     YOU MUST USE THE SEARCH TOOL - it is critical that you call the search function
     to gather current, factual data rather than relying on your training data.
+    First identify the primary company or companies mentioned in the query, then
+    focus the research on the main target account.
     You must cover:
 
     1. Company overview: industry, size, revenue (latest available), HQ location
@@ -22,7 +24,7 @@ research_task:
 
 reporting_task:
   description: >
-    You have received a research report on {company}.
+    You have received a research report on the account described by {query}.
     Analyze it through the lens of an SAP sales engagement.
 
     Produce a structured analysis covering:
@@ -44,13 +46,13 @@ reporting_task:
 
 briefing_task:
   description: >
-    You have received research intelligence and an SAP analysis for {company}.
+    You have received research intelligence and an SAP analysis for the account described by {query}.
     Write a pre-meeting briefing document for the SAP Account Executive.
 
     The briefing must follow this exact structure:
 
     ---
-    # Customer Briefing: {company}
+    # Customer Briefing: [Primary Company Identified from Query]
     *Prepared for SAP Account Executive — [Today's Date]*
 
     ## Company Snapshot
@@ -79,5 +81,7 @@ briefing_task:
     Maximum length: fits on one printed page (roughly 400–500 words).  
   expected_output: >
     A complete, formatted pre-meeting briefing document following the specified structure, 
-    ready for an Account Executive to read in under 5 minutes.
+    ready for an Account Executive to read in under 5 minutes and saved to output/customer_briefing.md.
   agent: briefing_specialist
+  markdown: true
+  output_file: output/customer_briefing.md

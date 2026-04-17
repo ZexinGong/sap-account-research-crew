@@ -65,7 +65,7 @@ class SapAccountResearchCrew():
     def briefing_task(self) -> Task:
         return Task(
             config=self.tasks_config['briefing_task'], # type: ignore[index]
-            context=[self.research_task(), self.reporting_task()]
+            context=[self.research_task(), self.reporting_task()],
         )
     
     @crew

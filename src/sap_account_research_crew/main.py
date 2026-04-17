@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+import os
 import sys
 import warnings
-
-from datetime import datetime
 
 from .crew import SapAccountResearchCrew
 
@@ -13,18 +12,30 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
 
-company = "Nvidia"
+DEFAULT_QUERY = "Research Nvidia as an SAP account"
+
+
+def _build_inputs(query: str) -> dict[str, str]:
+    return {"query": query}
+
+
+def _resolve_query() -> str:
+    try:
+        query = input("Enter a natural-language account query: ").strip()
+    except EOFError:
+        query = ""
+
+    return query or DEFAULT_QUERY
 
 def run():
     """
     Run the crew.
     """
-    inputs = {
-        'company': company,
-    }
+    inputs = _build_inputs(_resolve_query())
 
     try:
-        SapAccountResearchCrew().crew().kickoff(inputs=inputs)
+        result = SapAccountResearchCrew().crew().kickoff(inputs=inputs)
+        print(result)
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -33,9 +44,7 @@ def train():
     """
     Train the crew for a given number of iterations.
     """
-    inputs = {
-        "company": company,
-    }
+    inputs = _build_inputs(DEFAULT_QUERY)
     try:
         SapAccountResearchCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
@@ -56,9 +65,7 @@ def test():
     """
     Test the crew execution and returns the results.
     """
-    inputs = {
-        "company": company,
-    }
+    inputs = _build_inputs(DEFAULT_QUERY)
 
     try:
         SapAccountResearchCrew().crew().test(n_iterations=int(sys.argv[1]), eval_llm=sys.argv[2], inputs=inputs)
@@ -80,9 +87,11 @@ def run_with_trigger():
     except json.JSONDecodeError:
         raise Exception("Invalid JSON payload provided as argument")
 
+    query = trigger_payload.get("query") or trigger_payload.get("company") or DEFAULT_QUERY
+
     inputs = {
         "crewai_trigger_payload": trigger_payload,
-        "company": company
+        "query": query,
     }
 
     try:
