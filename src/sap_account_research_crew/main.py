@@ -4,7 +4,7 @@ import warnings
 
 from datetime import datetime
 
-from sap_account_research_crew.crew import SapAccountResearchCrew
+from .crew import SapAccountResearchCrew
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
